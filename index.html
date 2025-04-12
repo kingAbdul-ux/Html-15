@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Currency Converter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      background-color: #f4f4f4;
+    }
+    .converter {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, button {
+      padding: 0.5rem;
+      margin: 1rem 0;
+      width: 100%;
+      font-size: 1rem;
+    }
+    .result {
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="converter">
+    <h2>Currency Converter (USD to EUR, GBP, JPY)</h2>
+    <input type="number" id="usdInput" placeholder="Enter amount in USD" />
+    <button onclick="convertCurrency()">Convert</button>
+
+    <div class="result" id="resultBox"></div>
+  </div>
+
+  <script>
+    function convertCurrency() {
+      const usdAmount = parseFloat(document.getElementById("usdInput").value);
+
+      if (isNaN(usdAmount)) {
+        alert("Please enter a valid number.");
+        return;
+      }
+
+      const rates = {
+        EUR: 0.91,
+        GBP: 0.78,
+        JPY: 151.65
+      };
+
+      const resultBox = document.getElementById("resultBox");
+      resultBox.innerHTML = `
+        <p>EUR: €${(usdAmount * rates.EUR).toFixed(2)}</p>
+        <p>GBP: £${(usdAmount * rates.GBP).toFixed(2)}</p>
+        <p>JPY: ¥${(usdAmount * rates.JPY).toFixed(2)}</p>
+      `;
+    }
+  </script>
+
+</body>
+</html>
